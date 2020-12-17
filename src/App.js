@@ -5,7 +5,9 @@ require('dotenv').config()
 class App extends Component {
   
   state = {
-    photo: ""
+    photo: "",
+    type: "",
+    thumbnail_url: ""
   };
 
   showWidget = () => {
@@ -19,8 +21,10 @@ class App extends Component {
         if (result.event === "success") {
         
           const file = result.info.url; 
-          console.log(file);
-          this.setState({ photo: file });
+          console.log("RESULT")
+          console.log(result.info)
+          console.log("file: ", file, result.info.resource_type);
+          this.setState({ photo: file, type: result.info.resource_type, thumbnail_url: result.info.thumbnail_url });
         }
       }
     );
@@ -34,6 +38,7 @@ class App extends Component {
         <Pictures
           profilePhotoURL={this.state.photo}
           showWidget={this.showWidget}
+          type={this.state.photo}
         />
       </div>
     );

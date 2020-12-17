@@ -10,6 +10,8 @@ function Pictures(props) {
   const photo = props.profilePhotoURL ? props.profilePhotoURL : placeholder;
   const url = props.profilePhotoURL ? props.profilePhotoURL : "";
 
+  const type = props.type;
+
   return (
     <Container>
       <Row>
@@ -18,8 +20,14 @@ function Pictures(props) {
             Upload picture
           </Button>
           <br />
-
-          <img className="profileImg" src={photo} />
+        
+          {{type} === "image" ? (
+            <img className="profileImg" src={photo} alt="media file" />
+          ) : (
+            <video autoPlay width="320" height="240" controls>
+              <source src={photo} type="video/mp4" />
+            </video>
+          )}
           <br />
 
           <p>
@@ -31,7 +39,6 @@ function Pictures(props) {
         </Col>
       </Row>
     </Container>
-
   );
 }
 
